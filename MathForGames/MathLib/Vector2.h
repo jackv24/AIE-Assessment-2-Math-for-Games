@@ -15,8 +15,10 @@ public:
 	Vector2 operator * (const float& other);
 	operator float*();
 
-	//Public variable
+	//Public variables
 	float x = 0;
 	float y = 0;
 };
 
+//Operator overload outside class at it takes the class
+Vector2 operator * (const float& lhs, const Vector2& rhs);

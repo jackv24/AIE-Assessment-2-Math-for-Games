@@ -15,35 +15,54 @@ Vector2::Vector2(float xVal, float yVal)
 //Deconstructor
 Vector2::~Vector2()
 {
-
+	
 }
 
 
 //Operator overloads
 Vector2 Vector2::operator + (const Vector2& other)
 {
-	x += other.x;
-	y += other.y;
+	Vector2 newVector;
+
+	newVector.x = x + other.x;
+	newVector.y = y + other.y;
+
+	return newVector;
 }
 
 Vector2 Vector2::operator - (const Vector2& other)
 {
-	x -= other.x;
-	y -= other.y;
+	Vector2 newVector;
+
+	newVector.x = x - other.x;
+	newVector.y = y - other.y;
+
+	return newVector;
 }
 
 Vector2 Vector2::operator * (const float& other)
 {
-	x *= other;
-	y *= other;
+	Vector2 newVector;
+
+	newVector.x = x * other;
+	newVector.y = y * other;
+
+	return newVector;
+}
+
+Vector2 operator * (const float& lhs, const Vector2& rhs)
+{
+	Vector2 newVector;
+
+	newVector.x = lhs * rhs.x;
+	newVector.y = lhs * rhs.y;
+
+	return newVector;
 }
 
 Vector2::operator float*()
 {
-	float* array2 = new float[2];
-
-	array2[0] = x;
-	array2[1] = y;
-
-	return array2;
+	//Return vector values as array
+	float col[2] = { x, y };
+	return col;
 }
