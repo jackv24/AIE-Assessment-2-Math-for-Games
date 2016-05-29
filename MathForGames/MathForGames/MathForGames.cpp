@@ -16,7 +16,7 @@ int main() {
 	derp = derp * 2;
 	std::cout << derp.x << ", " << derp.y << std::endl;
 
-	derp = derp - derp;
+	derp = derp - Vector2(1, 2);
 	std::cout << derp.x << ", " << derp.y << std::endl;
 
 	system("PAUSE");
