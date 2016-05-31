@@ -15,6 +15,12 @@ public:
 	Vector3 operator * (const float& other);
 	operator float*();
 
+	//Public functions
+	float dot(const Vector3& other);
+	Vector3 cross(const Vector3& other);
+	float magnitude();
+	void normalise();
+
 	//Public variables
 	float x = 0;
 	float y = 0;

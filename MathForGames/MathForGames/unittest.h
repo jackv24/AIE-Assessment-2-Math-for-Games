@@ -4,7 +4,10 @@
 #include <Vector2.h>
 #include <Vector3.h>
 #include <Vector4.h>
-//#include <Matrix4.h> etc
+
+#include <Matrix2.h>
+#include <Matrix3.h>
+#include <Matrix4.h>
 
 // TYPEDEFS IF NEEDED
 // typedef glm::vec2 Vector2; etc

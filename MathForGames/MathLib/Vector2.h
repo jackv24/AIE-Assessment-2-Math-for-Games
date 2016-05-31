@@ -15,6 +15,11 @@ public:
 	Vector2 operator * (const float& other);
 	operator float*();
 
+	//Public functions
+	float dot(const Vector2& other);
+	float magnitude();
+	void normalise();
+
 	//Public variables
 	float x = 0;
 	float y = 0;

@@ -1,25 +1,21 @@
 #include "Vector2.h"
+#include <math.h>
 
-//Constructors
 Vector2::Vector2()
 {
 	x = 0;
 	y = 0;
 }
-
 Vector2::Vector2(float xVal, float yVal)
 {
 	x = xVal;
 	y = yVal;
 }
-//Deconstructor
 Vector2::~Vector2()
 {
 	
 }
 
-
-//Operator overloads
 Vector2 Vector2::operator + (const Vector2& other)
 {
 	Vector2 newVector;
@@ -29,7 +25,6 @@ Vector2 Vector2::operator + (const Vector2& other)
 
 	return newVector;
 }
-
 Vector2 Vector2::operator - (const Vector2& other)
 {
 	Vector2 newVector;
@@ -39,7 +34,6 @@ Vector2 Vector2::operator - (const Vector2& other)
 
 	return newVector;
 }
-
 Vector2 Vector2::operator * (const float& other)
 {
 	Vector2 newVector;
@@ -49,7 +43,6 @@ Vector2 Vector2::operator * (const float& other)
 
 	return newVector;
 }
-
 Vector2 operator * (const float& lhs, const Vector2& rhs)
 {
 	Vector2 newVector;
@@ -59,10 +52,25 @@ Vector2 operator * (const float& lhs, const Vector2& rhs)
 
 	return newVector;
 }
-
 Vector2::operator float*()
 {
 	//Return vector values as array
 	float col[2] = { x, y };
 	return col;
+}
+
+float Vector2::dot(const Vector2& other)
+{
+	return x * other.x + y * other.y;
+}
+float Vector2::magnitude()
+{
+	return sqrt(x * x + y * y);
+}
+void Vector2::normalise()
+{
+	float length = magnitude();
+
+	x /= length;
+	y /= length;
 }
