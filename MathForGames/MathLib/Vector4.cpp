@@ -47,7 +47,7 @@ Vector4 Vector4::operator * (const float& other)
 	Vector4 newVector;
 
 	newVector.x = x * other;
-	newVector.y = x * other;
+	newVector.y = y * other;
 	newVector.z = z * other;
 	newVector.w = w * other;
 
@@ -67,8 +67,7 @@ Vector4 operator * (const float& lhs, const Vector4& rhs)
 Vector4::operator float*()
 {
 	//Return vector values as array
-	float col[4] = { x, y, z, w };
-	return col;
+	return (float*)this;
 }
 
 float Vector4::dot(const Vector4& other)

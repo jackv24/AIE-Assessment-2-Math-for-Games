@@ -54,9 +54,7 @@ Vector2 operator * (const float& lhs, const Vector2& rhs)
 }
 Vector2::operator float*()
 {
-	//Return vector values as array
-	float col[2] = { x, y };
-	return col;
+	return (float*)this;
 }
 
 float Vector2::dot(const Vector2& other)

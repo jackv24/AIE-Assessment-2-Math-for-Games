@@ -43,7 +43,7 @@ Vector3 Vector3::operator * (const float& other)
 	Vector3 newVector;
 
 	newVector.x = x * other;
-	newVector.y = x * other;
+	newVector.y = y * other;
 	newVector.z = z * other;
 
 	return newVector;
@@ -61,8 +61,7 @@ Vector3 operator * (const float& lhs, const Vector3& rhs)
 Vector3::operator float*()
 {
 	//Return vector values as array
-	float col[3] = { x, y, x };
-	return col;
+	return (float*)this;
 }
 
 float Vector3::dot(const Vector3& other)
