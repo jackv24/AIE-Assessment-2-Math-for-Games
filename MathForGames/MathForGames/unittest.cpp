@@ -269,5 +269,13 @@ bool runUnitTests() {
 	//TEST("Matrix3 multiply", m3d, Matrix3(-0.981004655361f, 0.129707172513f, 0.14424264431f, 0.193984255195f, 0.655946731567f, 0.729454636574f, 0, 0.743579149246f, -0.668647944927f));
 	//TEST("Matrix4 multiply", m4d, Matrix4(-0.644213855267f, -0.565019249916f, 0.515501439571f, 0, -0.659384667873f, 0.751805722713f, 0, 0, -0.387556940317f, -0.339913755655f, -0.856888711452f, 0, 0, 0, 0, 1));
 	
+	Matrix2 mat1(1, 3, 2, 4);
+	Matrix2 mat2(5, 7, 6, 8);
+
+	Matrix2 newMat = mat1 * mat2;
+
+	std::cout << mat1 << std::endl;
+	std::cout << newMat << std::endl;
+
 	return true;
 }
