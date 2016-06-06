@@ -19,8 +19,9 @@ public:
 
 	static Matrix2 CreateIdentity();
 	Matrix2 GetTranspose();
+	void setRotateZ(float angle);
 
 private:
-	float m_array[2][2];
+	float m_array[ORDER][ORDER];
 };
 

@@ -1,4 +1,5 @@
 #include "Matrix2.h"
+#include <math.h>
 
 Matrix2::Matrix2()
 {
@@ -60,7 +61,17 @@ Matrix2 Matrix2::operator * (const Matrix2& other)
 }
 Vector2 Matrix2::operator * (const Vector2& other)
 {
-	
+	//turn vectors into arrays for matrix operations
+	float vector[2] = { other.x, other.y };
+	float newVector[2] = { 0, 0 };
+
+	//Iterate through rows and columns
+	for (int c = 0; c < ORDER; c++)
+		for (int r = 0; r < ORDER; r++)
+			newVector[r] += m_array[c][r] * vector[c];
+
+	//Return matrix vector as actual Vector
+	return Vector2(newVector[0], newVector[1]);
 }
 
 Matrix2 Matrix2::CreateIdentity()
@@ -81,4 +92,11 @@ Matrix2 Matrix2::GetTranspose()
 			transpose.m_array[c][r] = m_array[r][c];
 	
 	return transpose;
+}
+void Matrix2::setRotateZ(float angle)
+{
+	m_array[0][0] = cosf(angle);
+	m_array[0][1] = sinf(angle);
+	m_array[1][0] = -sinf(angle);
+	m_array[1][1] = cosf(angle);
 }
