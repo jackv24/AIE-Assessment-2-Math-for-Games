@@ -3,10 +3,10 @@
 
 Matrix4::Matrix4()
 {
-	m_array[0][0] = 0;
-	m_array[0][1] = 0;
-	m_array[1][0] = 0;
-	m_array[1][1] = 0;
+	//Iterate through and zero out
+	for (int c = 0; c < ORDER; c++)
+		for (int r = 0; r < ORDER; r++)
+			m_array[c][r] = 0;
 }
 Matrix4::Matrix4(float c1r1, float c1r2, float c1r3, float c1r4,
 	float c2r1, float c2r2, float c2r3, float c2r4,
@@ -66,11 +66,11 @@ Matrix4 Matrix4::operator * (const Matrix4& other)
 	Matrix4 newMatrix;
 
 	//Iterate through rows and columns
-	for (int c = 0; c < ORDER; c++)
-		for (int r = 0; r < ORDER; r++)
+	for (int r = 0; r < ORDER; r++)
+		for (int c = 0; c < ORDER; c++)
 			//For each row on left, go through columns on right
 			for (int i = 0; i < ORDER; i++)
-				newMatrix.m_array[c][r] += m_array[c][i] * other.m_array[i][r];
+				newMatrix.m_array[c][r] += m_array[i][r] * other.m_array[c][i];
 
 	return newMatrix;
 }

@@ -51,11 +51,11 @@ Matrix2 Matrix2::operator * (const Matrix2& other)
 	Matrix2 newMatrix;
 
 	//Iterate through rows and columns
-	for (int c = 0; c < ORDER; c++)
-		for (int r = 0; r < ORDER; r++)
+	for (int r = 0; r < ORDER; r++)
+		for (int c = 0; c < ORDER; c++)
 			//For each row on left, go through columns on right
 			for (int i = 0; i < ORDER; i++)
-				newMatrix.m_array[c][r] += m_array[c][i] * other.m_array[i][r];
+				newMatrix.m_array[c][r] += m_array[i][r] * other.m_array[c][i];
 
 	return newMatrix;
 }
