@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "Matrix4.h"
+#include "Matrix3.h"
 
 class SceneNode
 {
@@ -21,7 +21,7 @@ protected:
 	SceneNode* m_parent;
 
 	//transform relative to parent
-	Matrix4 m_local_transform;
+	Matrix3 m_local_transform;
 	//transform relative to world origin, recalculated every frame
-	Matrix4 m_global_transform;
+	Matrix3 m_global_transform;
 };

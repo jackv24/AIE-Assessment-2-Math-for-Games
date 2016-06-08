@@ -11,23 +11,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
+    <ClCompile Include="src\Crate.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\gl_core_4_4.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Application2D.cpp" />
+    <ClCompile Include="src\Planet.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\SceneNode.cpp" />
     <ClCompile Include="src\SpriteBatch.cpp" />
     <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneNode.h" />
     <ClInclude Include="src\BaseApplication.h" />
+    <ClInclude Include="src\Crate.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\gl_core_4_4.h" />
     <ClInclude Include="src\Application2D.h" />
+    <ClInclude Include="src\Planet.h" />
+    <ClInclude Include="src\Scene.h" />
+    <ClInclude Include="src\SceneNode.h" />
     <ClInclude Include="src\SpriteBatch.h" />
     <ClInclude Include="src\Texture.h" />
   </ItemGroup>

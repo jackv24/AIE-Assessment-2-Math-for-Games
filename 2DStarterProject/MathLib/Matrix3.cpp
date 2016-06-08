@@ -89,6 +89,37 @@ Matrix3 Matrix3::CreateIdentity()
 
 	return identity;
 }
+Matrix3 Matrix3::CreateRotation(float angle)
+{
+	Matrix3 newMatrix = CreateIdentity();
+
+	newMatrix.m_array[0][0] = cosf(angle);
+	newMatrix.m_array[0][1] = sinf(angle);
+	newMatrix.m_array[1][0] = -sinf(angle);
+	newMatrix.m_array[1][1] = cosf(angle);
+
+	return newMatrix;
+}
+Matrix3 Matrix3::CreateScale(const Vector3& scale)
+{
+	Matrix3 newMatrix = CreateIdentity();
+
+	newMatrix.m_array[0][0] = scale.x;
+	newMatrix.m_array[1][1] = scale.y;
+
+	return newMatrix;
+}
+Matrix3 Matrix3::CreateTranslation(const Vector3& translation)
+{
+	Matrix3 newMatrix = CreateIdentity();
+
+	newMatrix.m_array[2][0] = translation.x;
+	newMatrix.m_array[2][1] = translation.y;
+	newMatrix.m_array[2][2] = 1.0f;
+
+	return newMatrix;
+}
+
 Matrix3 Matrix3::GetTranspose()
 {
 	Matrix3 transpose;

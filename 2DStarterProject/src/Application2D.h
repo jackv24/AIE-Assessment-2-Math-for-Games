@@ -21,6 +21,4 @@ public:
 protected:
 
 	SpriteBatch*	m_spriteBatch;
-	Texture*		m_texture;
-	Font*			m_font;
 };
