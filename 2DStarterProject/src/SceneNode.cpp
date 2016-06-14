@@ -1,4 +1,6 @@
 #include "SceneNode.h"
+#include <iostream>
+#include <fstream>
 
 SceneNode::SceneNode()
 {
@@ -34,5 +36,28 @@ void SceneNode::UpdateTransforms()
 	for (unsigned int i = 0; i < m_children.size(); ++i)
 	{
 		m_children[i]->UpdateTransforms();
+	}
+}
+
+void SceneNode::SaveTree(std::ofstream& stream)
+{
+	if (stream.good())
+		stream.write((char*)&m_local_transform, sizeof(m_local_transform));
+
+	for (unsigned int i = 0; i < m_children.size(); ++i)
+	{
+		//Continue down tree, concatenating values
+		m_children[i]->SaveTree(stream);
+	}
+}
+
+void SceneNode::LoadTree(std::ifstream& stream)
+{
+	if (stream.good())
+		stream.read((char*)&m_local_transform, sizeof(m_local_transform));
+
+	for (unsigned int i = 0; i < m_children.size(); ++i)
+	{
+		m_children[i]->LoadTree(stream);
 	}
 }

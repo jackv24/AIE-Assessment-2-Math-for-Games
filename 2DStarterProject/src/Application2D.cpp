@@ -10,6 +10,9 @@
 #include "Scene.h"
 #include "Planet.h"
 
+#include <iostream>
+#include <fstream>
+
 Scene* scene;
 
 Planet* sun;
@@ -20,6 +23,8 @@ Planet* blue_planet_moon;
 Planet* green_planet;
 Planet* green_planet_moon1;
 Planet* green_planet_moon2;
+
+bool isKeyHeld = false;
 
 Application2D::Application2D() {
 	
@@ -37,16 +42,21 @@ bool Application2D::startup() {
 
 	scene = new Scene();
 
+	//Create sun as root
 	sun = new Planet("./bin/textures/Sun.png", Vector3(1280, 720, 1), 0, Vector3(0.5f, 0.5f, 1));
 	scene->SetRoot(sun);
 
+	//Create planet as child of sun
 	blue_planet = new Planet("./bin/textures/Planet_Blue.png", Vector3(400, 100, 1), 0, Vector3(1, 1, 1));
 	sun->AddChild(blue_planet);
+	//Create moon as child of planet
 	blue_planet_moon = new Planet("./bin/textures/Moon.png", Vector3(150, 0, 1), 0, Vector3(0.8f, 0.8f, 1));
 	blue_planet->AddChild(blue_planet_moon);
 
+	//Create planet as child of sun
 	green_planet = new Planet("./bin/textures/Planet_Green.png", Vector3(-600, 0, 1), 0, Vector3(1, 1, 1));
 	sun->AddChild(green_planet);
+	//Create moons as children of planet
 	green_planet_moon1 = new Planet("./bin/textures/Moon.png", Vector3(300, 0, 1), 0, Vector3(0.5f, 0.5f, 1));
 	green_planet->AddChild(green_planet_moon1);
 	green_planet_moon2 = new Planet("./bin/textures/Moon.png", Vector3(150, 0, 1), 0, Vector3(0.6f, 0.6f, 1));
@@ -58,6 +68,11 @@ bool Application2D::startup() {
 void Application2D::shutdown() {
 
 	delete sun;
+	delete blue_planet;
+	delete blue_planet_moon;
+	delete green_planet;
+	delete green_planet_moon1;
+	delete green_planet_moon2;
 
 	delete m_spriteBatch;
 
@@ -70,16 +85,51 @@ bool Application2D::update(float deltaTime) {
 	if (hasWindowClosed() || isKeyPressed(GLFW_KEY_ESCAPE))
 		return false;
 
-	sun->Update(1.0f);
+	//Drawing sprites
+	sun->Update(1.0f * deltaTime);
 
-	blue_planet->Update(0.5f);
-	blue_planet_moon->Update(2.0f);
+	blue_planet->Update(0.5f * deltaTime);
+	blue_planet_moon->Update(2.0f * deltaTime);
 
-	green_planet->Update(1.5f);
-	green_planet_moon1->Update(-3.0f);
-	green_planet_moon2->Update(-0.5f);
+	green_planet->Update(1.5f * deltaTime);
+	green_planet_moon1->Update(-3.0f * deltaTime);
+	green_planet_moon2->Update(-0.5f * deltaTime);
 
 	scene->UpdateTransforms();
+
+	//Detect keypress
+	//Save
+	if (isKeyPressed(GLFW_KEY_K))
+	{
+		if (!isKeyHeld)
+		{
+			isKeyHeld = true;
+			std::cout << "Saved tree" << std::endl;
+
+			std::ofstream file("data.dat", std::ios::in | std::ios::binary);
+			
+			sun->SaveTree(file);
+
+			file.close();
+		}
+	}
+	//Load
+	else if (isKeyPressed(GLFW_KEY_L))
+	{
+		if (!isKeyHeld)
+		{
+			isKeyHeld = true;
+			std::cout << "Loaded tree" << std::endl;
+
+			std::ifstream file("data.dat", std::ios::in | std::ios::binary);
+
+			sun->LoadTree(file);
+
+			file.close();
+		}
+	}
+	else
+		isKeyHeld = false;
 
 	// the applciation closes if we return false
 	return true;

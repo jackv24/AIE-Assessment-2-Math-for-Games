@@ -31,5 +31,5 @@ void Planet::Draw(SpriteBatch* spriteBatch)
 
 void Planet::Update(float rotateSpeed)
 {
-	m_local_transform = m_local_transform * Matrix3::CreateRotation(0.01f * rotateSpeed);
+	m_local_transform = m_local_transform * Matrix3::CreateRotation(1.0f * rotateSpeed);
 }

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Matrix3.h"
+#include <string>
 
 class SceneNode
 {
@@ -14,6 +15,9 @@ public:
 	void RemoveChild(SceneNode* node);
 
 	void UpdateTransforms();
+
+	void SaveTree(std::ofstream& stream);
+	void LoadTree(std::ifstream& stream);
 protected:
 	//list of children
 	std::vector<SceneNode*> m_children;

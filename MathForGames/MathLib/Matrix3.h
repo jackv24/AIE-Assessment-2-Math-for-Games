@@ -17,7 +17,12 @@ public:
 	Matrix3 operator * (const Matrix3& other);
 	Vector3 operator * (const Vector3& other);
 
+	//Static methods to build and return new matrices
 	static Matrix3 CreateIdentity();
+	static Matrix3 CreateRotation(float angle);
+	static Matrix3 CreateScale(const Vector3& scale);
+	static Matrix3 CreateTranslation(const Vector3& translation);
+
 	Matrix3 GetTranspose();
 	void setRotateX(float angle);
 	void setRotateY(float angle);

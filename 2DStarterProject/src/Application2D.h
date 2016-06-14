@@ -20,5 +20,5 @@ public:
 
 protected:
 
-	SpriteBatch*	m_spriteBatch;
+	SpriteBatch* m_spriteBatch;
 };
