@@ -10,6 +10,7 @@ SceneNode::SceneNode()
 }
 SceneNode::~SceneNode()
 {
+	m_children.clear();
 }
 
 void SceneNode::SetParent(SceneNode* node)

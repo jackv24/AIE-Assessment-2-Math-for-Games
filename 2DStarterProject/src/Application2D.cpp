@@ -43,29 +43,31 @@ bool Application2D::startup() {
 	scene = new Scene();
 
 	//Create sun as root
-	sun = new Planet("./bin/textures/Sun.png", Vector3(1280, 720, 1), 0, Vector3(0.5f, 0.5f, 1));
+	sun = new Planet("textures/Sun.png", Vector3(1280, 720, 1), 0, Vector3(0.5f, 0.5f, 1));
 	scene->SetRoot(sun);
 
 	//Create planet as child of sun
-	blue_planet = new Planet("./bin/textures/Planet_Blue.png", Vector3(400, 100, 1), 0, Vector3(1, 1, 1));
+	blue_planet = new Planet("textures/Planet_Blue.png", Vector3(400, 100, 1), 0, Vector3(1, 1, 1));
 	sun->AddChild(blue_planet);
 	//Create moon as child of planet
-	blue_planet_moon = new Planet("./bin/textures/Moon.png", Vector3(150, 0, 1), 0, Vector3(0.8f, 0.8f, 1));
+	blue_planet_moon = new Planet("textures/Moon.png", Vector3(150, 0, 1), 0, Vector3(0.8f, 0.8f, 1));
 	blue_planet->AddChild(blue_planet_moon);
 
 	//Create planet as child of sun
-	green_planet = new Planet("./bin/textures/Planet_Green.png", Vector3(-600, 0, 1), 0, Vector3(1, 1, 1));
+	green_planet = new Planet("textures/Planet_Green.png", Vector3(-600, 0, 1), 0, Vector3(1, 1, 1));
 	sun->AddChild(green_planet);
 	//Create moons as children of planet
-	green_planet_moon1 = new Planet("./bin/textures/Moon.png", Vector3(300, 0, 1), 0, Vector3(0.5f, 0.5f, 1));
+	green_planet_moon1 = new Planet("textures/Moon.png", Vector3(300, 0, 1), 0, Vector3(0.5f, 0.5f, 1));
 	green_planet->AddChild(green_planet_moon1);
-	green_planet_moon2 = new Planet("./bin/textures/Moon.png", Vector3(150, 0, 1), 0, Vector3(0.6f, 0.6f, 1));
+	green_planet_moon2 = new Planet("textures/Moon.png", Vector3(150, 0, 1), 0, Vector3(0.6f, 0.6f, 1));
 	green_planet_moon1->AddChild(green_planet_moon2);
 
 	return true;
 }
 
 void Application2D::shutdown() {
+
+	delete scene;
 
 	delete sun;
 	delete blue_planet;
@@ -106,7 +108,7 @@ bool Application2D::update(float deltaTime) {
 			isKeyHeld = true;
 			std::cout << "Saved tree" << std::endl;
 
-			std::ofstream file("data.dat", std::ios::in | std::ios::binary);
+			std::ofstream file("data.dat", std::ios::out | std::ios::binary);
 			
 			sun->SaveTree(file);
 
